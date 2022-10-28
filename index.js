@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const express = require('express');
 const bodyparser = require('body-parser');
 var app = express();
@@ -6,19 +6,23 @@ var app = express();
 app.use(bodyparser.json());
 
 //MySQL details
-const mysqlConnection = mysql.createConnection({
+var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'Banana1305*',
     database: 'sakila',
-    });
+    multipleStatements: true
+});
+
+
 mysqlConnection.connect((err)=> {
     if(!err)
     console.log('Connection Established Successfully');
     else
-    console.log('Connection Failed!'+ JSON.stringify(err,undefined,2)); 
+    console.log('Connection Failed!'+ JSON.stringify(err,undefined,2));
 });
 
+//Establish the server connection
 //PORT ENVIRONMENT VARIABLE
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
